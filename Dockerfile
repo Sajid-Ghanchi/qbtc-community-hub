@@ -3,7 +3,7 @@ ENV NODE_ENV=production DATA_DIR=/data PORT=3000
 WORKDIR /app
 COPY package.json ./
 RUN npm install --omit=dev && npm cache clean --force
-COPY server.js seed.json ./
+COPY server.js ./
 COPY public ./public
 RUN mkdir -p /data && chown -R node:node /data /app
 USER node
