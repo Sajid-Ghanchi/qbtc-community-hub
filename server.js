@@ -3,7 +3,10 @@ const DATA=process.env.DATA_DIR||path.join(__dirname,'data'),UP=path.join(DATA,'
 fs.mkdirSync(UP,{recursive:true});
 const STATUS=['review','planned','progress','shipped'],rid=()=>crypto.randomBytes(6).toString('hex');
 let db,t;
-try{db=JSON.parse(fs.readFileSync(DBF,'utf8'))}catch{db=JSON.parse(fs.readFileSync(path.join(__dirname,'seed.json'),'utf8'));save()}
+try{db=JSON.parse(fs.readFileSync(DBF,'utf8').replace(/^\uFEFF/,''))}catch(e){
+  if(e.code!=='ENOENT'){try{fs.copyFileSync(DBF,DBF+'.corrupt-'+Date.now())}catch{}}
+  db={posts:[]};save()}
+if(!db||!Array.isArray(db.posts)){db={posts:[]};save()}
 function save(){clearTimeout(t);t=setTimeout(()=>{const tmp=DBF+'.tmp';fs.writeFile(tmp,JSON.stringify(db,null,1),e=>!e&&fs.rename(tmp,DBF,()=>{}))},100)}
 const clean=(s,n,nl)=>String(s??'').replace(nl?/[\u0000-\u0009\u000b-\u001f\u007f]/g:/[\u0000-\u001f\u007f]/g,' ').trim().slice(0,n);
 const sig=b=>b.subarray(0,3).equals(Buffer.from([255,216,255]))?'jpg':b.subarray(0,4).equals(Buffer.from([137,80,78,71]))?'png':(b.subarray(0,4).toString()==='RIFF'&&b.subarray(8,12).toString()==='WEBP')?'webp':b.subarray(0,3).toString()==='GIF'?'gif':null;
