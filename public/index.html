@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QBTC Hub: ideas and roadmap</title><meta name="description" content="Share ideas, vote and follow what ships next for QBTC.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f7a823'/%3E%3Ctext x='16' y='22' font-size='16' font-weight='700' text-anchor='middle' fill='%230e1220'%3EQ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header class="top"><div class="wrap bar">
+<a class="logo" href="/"><span class="mark">Q</span><b>QBTC Hub</b></a>
+<nav><button data-v="ideas" class="on">Ideas</button><button data-v="roadmap">Roadmap</button></nav>
+<input id="q" type="search" placeholder="Search ideas or #tags" aria-label="Search ideas">
+<button id="adm" class="ghost" title="Admin mode">Admin</button>
+<button id="new" class="primary">Post an idea</button></div></header>
+<main class="wrap">
+<section class="hero" id="hero"><h1>What should QBTC build next?</h1><p>Post an idea, back the ones you like, and follow each one from review to launch.</p>
+<div id="stats" class="stats"></div></section>
+<div id="tools" class="tools"><div id="tags" class="chips"></div><select id="sort" aria-label="Sort"><option value="top">Most voted</option><option value="new">Newest</option><option value="talk">Most discussed</option></select></div>
+<div id="out"></div></main>
+<div id="modal" class="modal" hidden><div class="sheet" role="dialog" aria-modal="true"><button class="x" id="close" aria-label="Close">×</button><div id="mbody"></div></div></div>
+<div id="toast" role="status"></div>
+</body></html>
